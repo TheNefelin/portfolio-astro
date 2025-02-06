@@ -8,7 +8,7 @@ const resp = await fetch(API_URL)
 const apiResult: ApiResult<Project[]> = await resp.json()
 ---
 
-<section class="p-4">
+<section id="id-projects" class="p-4">
   <div class="flex flex-wrap gap-4 justify-center m-auto max-w-screen-xl">
 
     {apiResult.data.map((project: Project) => 
