@@ -1,8 +1,14 @@
+---
+import imgHero from '../assets/img/hero.jpg';
+import imgLinkedin from '../assets/img/linkedin.png';
+import imgGithub from '../assets/img/github.png';
+---
+
 <div class="hero bg-base-300">
   <div class="hero-content flex-col lg:flex-row">
     <div class="avatar">
       <div class="w-48 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-        <img src="/src/assets/img/hero.jpg" alt="francisco image"/>
+        <img src={imgHero.src} alt="francisco image"/>
       </div>
     </div>
     <div>
@@ -11,13 +17,13 @@
       <div class="flex justify-center items-center gap-6">
         <a class="avatar flex items-center gap-2" href="https://www.linkedin.com/in/nefelin" target="_blank">
           <div class="w-8">
-            <img src="/src/assets/img/linkedin.png" alt="linkedin image" />
+            <img src={imgLinkedin.src} alt="linkedin image" />
           </div>
           <span>LinkedIn</span>
         </a>
         <a class="avatar flex items-center gap-2" href="https://github.com/TheNefelin" target="_blank">
           <div class="w-8">
-            <img src="/src/assets/img/github.png" alt="github image" />
+            <img src={imgGithub.src} alt="github image" />
           </div>
           <span class="">GitHub</span>
         </a>
