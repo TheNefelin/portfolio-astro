@@ -4,3 +4,19 @@
   /* themes: light --default, dark --prefersdark; */
   themes: light --default;
 }
+
+body::-webkit-scrollbar{
+  display: none !important;
+}
+
+html::-webkit-scrollbar{
+  display: none !important;
+}
+
+body {
+  scrollbar-width: none !important; 
+}
+
+html {
+  scrollbar-width: none !important; 
+}
