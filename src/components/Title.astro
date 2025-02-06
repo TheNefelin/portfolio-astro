@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<section class="flex justify-center pt-4 px-2">
+  <div class="bg-gray-700 w-3xl p-4 rounded text-center font-bold text-xl">
+    <span class="text-rose-300">{`const `}</span>
+    <span class="text-white">{title}</span>
+    <span class="text-blue-300">{`= `}</span>
+    <span class="text-yellow-300">{`( ) `}</span>
+    <span class="text-blue-300">{`=> `}</span>
+    <span class="text-rose-300">{`{ ...`}</span>
+  </div>
+</section>

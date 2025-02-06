@@ -1,0 +1,22 @@
+---
+import type { ApiResult, Game } from "../types/Models"
+
+const resp = await fetch("https://artema.bsite.net/api/public/projects")
+const apiResult: ApiResult = await resp.json()
+---
+
+<section class="p-4">
+  <div class="flex flex-wrap gap-4 justify-center m-auto max-w-screen-xl">
+
+    {apiResult.data.map((project: Game) => 
+      <div class="card w-72 bg-base-100 shadow-xl">
+        <div class="card-body">
+          <h2 class="card-normal font-bold">{project.name}</h2>
+        </div>
+
+
+      </div>
+    )}
+
+  </div>
+</section>

@@ -1,3 +1,34 @@
+# Portfolio Astro
+
+### Dependencies
+* [Tailwindcss + DaisyUI](.console.cloud.google.com/apis/dashboard)
+```
+npm install tailwindcss @tailwindcss/vite
+npm install daisyui@beta
+```
+* Add the @tailwindcss/vite
+```
+import { defineConfig } from 'astro/config';
+import tailwindcss from '@tailwindcss/vite'
+```
+* astro.config.mjs
+```
+export default defineConfig({
+  vite: {
+    plugins: [tailwindcss()],
+  },
+});
+```
+* app.css
+```
+@import "tailwindcss";
+@plugin "daisyui";
+```
+
+<hr>
+<hr>
+<hr>
+
 # Astro Starter Kit: Basics
 
 ```sh
