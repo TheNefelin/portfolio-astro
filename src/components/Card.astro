@@ -1,7 +1,8 @@
 ---
 import type { ApiResult, Game } from "../types/Models"
 
-const resp = await fetch("https://artema.bsite.net/api/public/projects")
+const URI = import.meta.env.SECRET_API_URL
+const resp = await fetch(URI)
 const apiResult: ApiResult = await resp.json()
 ---
 
