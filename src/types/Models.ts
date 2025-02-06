@@ -1,71 +1,40 @@
-export interface ApiResult {
+export interface ApiResult<T> {
   isSucces: boolean
   statusCode: number
   message: string
-  data: Game[]
+  data: T
 }
 
-export interface Game {
+export interface Project {
   id: number
   name: string
-  description: string
   imgUrl: string
-  isActive: boolean
-  characters: Character[]
-  sources: Source[]
-  backgrounds: Background[]
-  guides: Guide[]
+  languages: Language[]
+  technologies: Technology[]
 }
 
-export interface Character {
+export interface Language {
   id: number
   name: string
-  description: string
   imgUrl: string
 }
 
-export interface Source {
+export interface Technology {
   id: number
   name: string
-  url: string
-}
-
-export interface Background {
-  id: number
   imgUrl: string
 }
 
-export interface Guide {
-  id: number
-  name: string
-  sort: number
-  adventures: Adventure[]
-  guideUser: GuidesUser
+export interface UrlGrp {
+  id: number,
+  name: string,
+  isEnable: boolean,
+  urls: Url[]
 }
 
-export interface GuidesUser {
-  id_Guide: number
-  id_User: string
-  isCheck: boolean
-}
-
-export interface Adventure {
-  id: number
-  description: string
-  isImportant: boolean
-  sort: number
-  adventuresImg: AdventureImg[]
-  adventureUser: AdventuresUser
-}
-
-export interface AdventuresUser {
-  id_Adventure: number
-  id_User: string
-  isCheck: boolean
-}
-
-export interface AdventureImg {
-  id: number
-  imgUrl: string
-  sort: number
+export interface Url {
+  id: number,
+  name: string,
+  url: string,
+  isEnable: boolean
 }

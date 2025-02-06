@@ -1,21 +1,47 @@
 ---
-import type { ApiResult, Game } from "../types/Models"
+import type { ApiResult, Language, Project, Technology } from "../types/Models"
 
-const URI = import.meta.env.SECRET_API_URL
-const resp = await fetch(URI)
-const apiResult: ApiResult = await resp.json()
+const API_URL = import.meta.env.SECRET_API_URL
+const API_IMG = import.meta.env.SECRET_API_IMG
+
+const resp = await fetch(API_URL)
+const apiResult: ApiResult<Project[]> = await resp.json()
 ---
 
 <section class="p-4">
   <div class="flex flex-wrap gap-4 justify-center m-auto max-w-screen-xl">
 
-    {apiResult.data.map((project: Game) => 
+    {apiResult.data.map((project: Project) => 
       <div class="card w-72 bg-base-100 shadow-xl">
         <div class="card-body">
           <h2 class="card-normal font-bold">{project.name}</h2>
         </div>
 
+        <figure class="px-4">
+          <img class="rounded-xl" src={`${API_IMG}${project.imgUrl}`} alt={project.name} />
+        </figure>
 
+        <div class="card-body m-auto">
+          <h2 class="card-title">
+            {project.languages.map((language: Language) => 
+              <div class="avatar m-auto">
+                <div class="h-10">
+                  <img src={`${API_IMG}${language.imgUrl}`} alt={language.name} />
+                </div>
+              </div>
+            )}
+          </h2>
+
+          <h2 class="card-title m-auto">
+            {project.technologies.map((technology: Technology) => 
+              <div class="avatar m-auto">
+                <div class="h-10">
+                  <img src={`${API_IMG}${technology.imgUrl}`} alt={technology.name} />
+                </div>
+              </div>
+            )}
+          </h2>
+        </div>
       </div>
     )}
 

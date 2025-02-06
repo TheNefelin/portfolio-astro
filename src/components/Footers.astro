@@ -1,24 +1,21 @@
+---
+import type { ApiResult, Url, UrlGrp } from "../types/Models"
+
+const API_LINKS = import.meta.env.SECRET_API_LINKS
+
+const resp = await fetch(API_LINKS)
+const apiResult: ApiResult<UrlGrp[]> = await resp.json()
+---
+
 <footer class="footer bg-gray-900 text-neutral-content p-10 grid grid-cols-2 md:grid-cols-4">
-  <nav>
-    <h6 class="footer-title">Services</h6>
-    <a class="link link-hover">Branding</a>
-    <a class="link link-hover">Design</a>
-    <a class="link link-hover">Marketing</a>
-    <a class="link link-hover">Advertisement</a>
-  </nav>
-  <nav>
-    <h6 class="footer-title">Company</h6>
-    <a class="link link-hover">About us</a>
-    <a class="link link-hover">Contact</a>
-    <a class="link link-hover">Jobs</a>
-    <a class="link link-hover">Press kit</a>
-  </nav>
-  <nav>
-    <h6 class="footer-title">Legal</h6>
-    <a class="link link-hover">Terms of use</a>
-    <a class="link link-hover">Privacy policy</a>
-    <a class="link link-hover">Cookie policy</a>
-  </nav>
+  {apiResult.data.map((urlGrp: UrlGrp) => 
+    <nav>
+      <h6 class="footer-title">{urlGrp.name}</h6>
+      {urlGrp.urls.map((url: Url) => 
+        <a class="link link-hover" target="_blank" href={url.url}>{url.name}</a>
+      )}
+    </nav>
+  )}
 </footer>
 
 <footer class="relative z-10 footer bg-gray-700 text-neutral-content p-5">
