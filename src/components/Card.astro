@@ -1,5 +1,7 @@
 ---
 import type { ApiResult, Language, Project, Technology } from "../types/Models"
+import imgApp from '../assets/img/app.png';
+import imgGitHub from '../assets/img/github.png';
 
 const API_URL = import.meta.env.SECRET_API_URL
 const API_IMG = import.meta.env.SECRET_API_IMG
@@ -41,6 +43,22 @@ const apiResult: ApiResult<Project[]> = await resp.json()
               </div>
             )}
           </h2>
+        </div>
+
+        <div class="card-actions justify-center mb-2 text-gray-400">
+          <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href="#" target="_blank">
+            <div class="w-4">
+              <img src={imgGitHub.src} alt="github image" />
+            </div>
+            <span>GitHub</span>
+          </a>
+          
+          <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href="#" target="_blank">
+            <div class="w-4">
+              <img src={imgApp.src} alt="github image" />
+            </div>
+            <span>App</span>
+          </a>
         </div>
       </div>
     )}
