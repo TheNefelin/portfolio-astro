@@ -46,19 +46,23 @@ const apiResult: ApiResult<Project[]> = await resp.json()
         </div>
 
         <div class="card-actions justify-center mb-2 text-gray-400">
-          <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href="#" target="_blank">
-            <div class="w-4">
-              <img src={imgGitHub.src} alt="github image" />
-            </div>
-            <span>GitHub</span>
-          </a>
-          
-          <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href="#" target="_blank">
-            <div class="w-4">
-              <img src={imgApp.src} alt="github image" />
-            </div>
-            <span>App</span>
-          </a>
+          {project.repoUrl && 
+            <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href={project.repoUrl} target="_blank">
+              <div class="w-4">
+                <img src={imgGitHub.src} alt="github image" />
+              </div>
+              <span>GitHub</span>
+            </a>          
+          }
+
+          {project.appUrl && 
+            <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href={project.appUrl} target="_blank">
+              <div class="w-4">
+                <img src={imgApp.src} alt="github image" />
+              </div>
+              <span>App</span>
+            </a>
+          }
         </div>
       </div>
     )}

@@ -9,6 +9,8 @@ export interface Project {
   id: number
   name: string
   imgUrl: string
+  repoUrl: string
+  appUrl: string
   languages: Language[]
   technologies: Technology[]
 }
