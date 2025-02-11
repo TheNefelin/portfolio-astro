@@ -2,12 +2,10 @@
 import type { ApiResult, Language, Project, Technology } from "../types/Models"
 import imgApp from '../assets/img/app.png';
 import imgGitHub from '../assets/img/github.png';
+import { apiFetchProjects } from "../services/fetching";
 
-const API_URL = import.meta.env.SECRET_API_URL
 const API_IMG = import.meta.env.SECRET_API_IMG
-
-const resp = await fetch(API_URL)
-const apiResult: ApiResult<Project[]> = await resp.json()
+const apiResult: ApiResult<Project[]> = await apiFetchProjects()
 ---
 
 <section id="id-projects" class="p-4">

@@ -1,10 +1,8 @@
 ---
+import { apiFetchLinks } from "../services/fetching"
 import type { ApiResult, Url, UrlGrp } from "../types/Models"
 
-const API_LINKS = import.meta.env.SECRET_API_LINKS
-
-const resp = await fetch(API_LINKS)
-const apiResult: ApiResult<UrlGrp[]> = await resp.json()
+const apiResult: ApiResult<UrlGrp[]> = await apiFetchLinks()
 ---
 
 <footer class="footer bg-gray-900 text-neutral-content p-10 grid grid-cols-2 md:grid-cols-4">
