@@ -15,12 +15,6 @@ const GET_REQUEST_OPTIONS: RequestInit = {
   },
 };
 
-const GET_REQUEST_IMG: RequestInit = {
-  headers: {
-    "ApiKey": API_KEY
-  },
-};
-
 export async function apiFetchProjects(): Promise<ApiResult<Project[]>> {
   try {
     const response = await fetch(API_PROJECTS, GET_REQUEST_OPTIONS);
@@ -46,16 +40,3 @@ export async function apiFetchLinks(): Promise<ApiResult<UrlGrp[]>> {
     throw new Error(err instanceof Error ? err.message : "Error desconocido");
   }
 };
-
-export async function apiFetchImgUrl(fileName: string): Promise<string | null>  {
-  try {
-    const response = await fetch(`${API_IMG}${fileName}`, GET_REQUEST_OPTIONS);
-    if (!response.ok) throw new Error(`Error en la API: ${response.status} ${response.statusText}`)
-
-    const blob = await response.blob();
-    return URL.createObjectURL(blob); 
-  } catch (err: unknown) {
-    console.error("Error al obtener los datos de la API (apiFetchImg):", err);
-    throw new Error(err instanceof Error ? err.message : "Error desconocido");
-  }
-}
