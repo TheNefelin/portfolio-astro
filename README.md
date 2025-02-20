@@ -1,7 +1,7 @@
 # Portfolio Astro
 
 ### Dependencies
-* [Tailwindcss + DaisyUI](.console.cloud.google.com/apis/dashboard)
+> [Tailwindcss + DaisyUI](.console.cloud.google.com/apis/dashboard)
 ```
 npm install tailwindcss @tailwindcss/vite
 npm install daisyui@beta
@@ -23,6 +23,19 @@ export default defineConfig({
 ```
 @import "tailwindcss";
 @plugin "daisyui";
+```
+> [Vercel](https://docs.astro.build/en/guides/integrations-guide/vercel/)
+```
+npm install @astrojs/vercel
+```
+* astro.config.mjs
+```
+import vercel from '@astrojs/vercel';
+
+export default defineConfig({
+  output: 'server', // Habilitar SSR
+  adapter: vercel(), // Usar el adaptador de Vercel
+});
 ```
 
 <hr>
