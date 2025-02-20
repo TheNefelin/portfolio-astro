@@ -1,6 +1,6 @@
 import type { ApiResult, Project, UrlGrp } from "../types/Models";
 
-const API_URL = import.meta.env.SECRET_API_URL
+const API_URL: string = import.meta.env.SECRET_API_URL
 const API_KEY: string = import.meta.env.SECRET_API_KEY;
 
 const GET_REQUEST_OPTIONS: RequestInit = {
