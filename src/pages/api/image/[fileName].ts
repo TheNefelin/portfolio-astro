@@ -7,7 +7,7 @@ export const GET: APIRoute = async ({ params }) => {
   const fileName = params.fileName; // Obtener el nombre del archivo de los parámetros
 
   // URL de la API externa
-  const apiUrl = `${API_URL}/img?fileName=${fileName}`;
+  const apiUrl = `${API_URL}${fileName}`;
 
   try {
     // Hacer la solicitud a la API externa
