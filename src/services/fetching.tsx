@@ -1,8 +1,6 @@
 import type { ApiResult, Project, UrlGrp } from "../types/Models";
 
-const API_PROJECTS: string = import.meta.env.SECRET_API_PROJECTS;
-const API_LINKS: string = import.meta.env.SECRET_API_LINKS;
-const API_IMG: string = import.meta.env.SECRET_API_IMG;
+const API_URL = import.meta.env.SECRET_API_URL
 const API_KEY: string = import.meta.env.SECRET_API_KEY;
 
 const GET_REQUEST_OPTIONS: RequestInit = {
@@ -17,7 +15,7 @@ const GET_REQUEST_OPTIONS: RequestInit = {
 
 export async function apiFetchProjects(): Promise<ApiResult<Project[]>> {
   try {
-    const response = await fetch(API_PROJECTS, GET_REQUEST_OPTIONS);
+    const response = await fetch(`${API_URL}/projects`, GET_REQUEST_OPTIONS);
     const apiResult: ApiResult<Project[]> = await response.json(); 
     if (!response.ok) throw new Error(`Error en la API: ${response.status} ${response.statusText}`)
 
@@ -30,7 +28,7 @@ export async function apiFetchProjects(): Promise<ApiResult<Project[]>> {
 
 export async function apiFetchLinks(): Promise<ApiResult<UrlGrp[]>> {
   try {
-    const response = await fetch(API_LINKS, GET_REQUEST_OPTIONS);
+    const response = await fetch(`${API_URL}/urls`, GET_REQUEST_OPTIONS);
     const apiResult: ApiResult<UrlGrp[]> = await response.json();
     if (!response.ok) throw new Error(`Error en la API: ${response.status} ${response.statusText}`)
 

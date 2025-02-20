@@ -1,14 +1,13 @@
 import type { APIRoute } from 'astro';
-import type { ApiResult, Project } from '../../../types/Models';
-import { apiFetchProjects } from '../../../services/fetching';
 
+const API_URL = import.meta.env.SECRET_API_URL
 const API_KEY = import.meta.env.SECRET_API_KEY
 
 export const GET: APIRoute = async ({ params }) => {
   const fileName = params.fileName; // Obtener el nombre del archivo de los parámetros
 
   // URL de la API externa
-  const apiUrl = `https://dragonra.bsite.net/api/img/f1?fileName=${fileName}`;
+  const apiUrl = `${API_URL}/img?fileName=${fileName}`;
 
   try {
     // Hacer la solicitud a la API externa
