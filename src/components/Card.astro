@@ -4,7 +4,7 @@ import imgApp from '../assets/img/app.png';
 import imgGitHub from '../assets/img/github.png';
 import { apiFetchProjects } from "../services/fetching";
 
-const API_IMG = "/api/image/"
+const API_IMG = import.meta.env.SECRET_API_IMG
 const apiResult: ApiResult<Project[]> = await apiFetchProjects()
 ---
 
