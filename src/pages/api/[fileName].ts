@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { apiFetchProjects } from '../../services/fetching';
 
 const API_KEY = import.meta.env.SECRET_API_KEY
+const API_URL = import.meta.env.SECRET_API_URL
 
 // Manejar la solicitud GET
 export const GET: APIRoute = async ({ params }) => {
@@ -10,7 +11,7 @@ export const GET: APIRoute = async ({ params }) => {
   console.log(fileName)
 
   // URL de la API externa
-  const apiUrl = `https://dragonra.bsite.net/api/img/portfolio?fileName=project_bierheart_863x568.webp`;
+  const apiUrl = `${API_URL}/img?fileName=${fileName}`;
 
   try {
     // Hacer la solicitud a la API externa
