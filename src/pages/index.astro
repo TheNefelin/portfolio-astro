@@ -8,6 +8,7 @@ import Code from '../components/Code.astro';
 import Card from '../components/Card.astro';
 import Socials from '../components/Socials.astro';
 import Footers from "../components/Footers.astro";
+import Console from "../components/Console.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -18,9 +19,11 @@ import Footers from "../components/Footers.astro";
 	
 	<main class=" pt-20">
 		<Hero/>
-		<Title id="id_code" title="someExperience"/>
+		<Title id="id_me" title="aboutMe"/>		
+		<Console/>
+		<Title id="id_Experience" title="someExperience"/>
 		<Code/>
-		<Title id="id-projects" title="someProjects"/>
+		<Title id="id_projects" title="someProjects"/>
 		<Card/>
 		<Title id="id_socials" title="someSocials"/>
 		<Socials/>

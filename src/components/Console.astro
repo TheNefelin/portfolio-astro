@@ -1,0 +1,57 @@
+<!-- Component Template -->
+<section class="pt-4 px-2 flex justify-center">
+  <div class="bg-black rounded-lg shadow-lg overflow-hidden w-full max-w-3xl mx-auto">
+    <!-- Header de la terminal -->
+    <div class="bg-gray-800 px-4 py-2 flex items-center justify-between">
+      <div class="flex space-x-2">
+        <div class="rounded-full bg-red-500 w-3 h-3"></div>
+        <div class="rounded-full bg-yellow-500 w-3 h-3"></div>
+        <div class="rounded-full bg-green-500 w-3 h-3"></div>
+      </div>
+      <div class="text-gray-300 text-sm font-mono">MS-DOS Prompt</div>
+      <div class="w-6"></div>
+    </div>
+
+    <!-- Cuerpo de la terminal -->
+    <div class="p-4 h-72 overflow-y-auto font-mono text-green-400 bg-black" id="terminalOutput">
+      <div class="whitespace-pre-wrap">C:\&gt; Iniciando...</div>
+    </div>
+    
+    <!-- Línea de entrada -->
+    <div class="px-4 py-2 border-t border-gray-700 flex items-center font-mono text-green-400 bg-black">
+      <span class="mr-2">C:\&gt;</span>
+      <span class="inline-block w-2 h-4 bg-green-400 animate-pulse"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+// Script del cliente
+document.addEventListener('DOMContentLoaded', function() {
+  const fullText = 
+  `C:\\> As a developer, he has continuously advanced through self-learning and adapting to new technologies, contributing as a problem solver and delivering solutions aligned with client needs.\n\n` +
+  `C:\\> He has participated in numerous projects, both independently and collaboratively, maintaining a strong team dynamic.\n\n` +
+  `C:\\> He is eager to continue honing his skills in software development, seeking opportunities to tackle new challenges and stay at the forefront of emerging technologies.`;
+
+  let currentText = "";
+  let textIndex = 0;
+  
+  function typeText() {
+    if (textIndex < fullText.length) {
+      currentText += fullText.charAt(textIndex);
+      textIndex++;
+      
+      const outputElement = document.getElementById('terminalOutput');
+      if (outputElement) {
+        outputElement.innerHTML = `<div class="whitespace-pre-wrap">${currentText}</div>`;
+        outputElement.scrollTop = outputElement.scrollHeight;
+      }
+      
+      setTimeout(typeText, 40); // Velocidad de escritura
+    }
+  }
+  
+  // Iniciar automáticamente
+  setTimeout(typeText, 1000);
+});
+</script>
