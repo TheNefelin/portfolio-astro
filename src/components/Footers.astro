@@ -10,7 +10,7 @@ const apiResult: ApiResult<UrlGrp[]> = await apiFetchLinks()
     <nav>
       <h6 class="footer-title">{urlGrp.name}</h6>
       {urlGrp.urls.map((url: Url) => 
-        <a class="link link-hover" target="_blank" href={url.url}>{url.name}</a>
+        <a class="link link-hover" target="_blank" href={url.link}>{url.name}</a>
       )}
     </nav>
   )}

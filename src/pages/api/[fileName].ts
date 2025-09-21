@@ -56,7 +56,7 @@ async function fetchUniqueImageUrls() {
   const apiResult = await apiFetchProjects();
 
   // Verificar si la solicitud fue exitosa
-  if (!apiResult.isSucces) {
+  if (!apiResult.isSuccess) {
     throw new Error(`Error al obtener los proyectos: ${apiResult.message}`);
   }
 

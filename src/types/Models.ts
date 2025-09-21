@@ -1,5 +1,5 @@
 export interface ApiResult<T> {
-  isSucces: boolean
+  isSuccess: boolean
   statusCode: number
   message: string
   data: T
@@ -37,6 +37,6 @@ export interface UrlGrp {
 export interface Url {
   id: number,
   name: string,
-  url: string,
+  link: string,
   isEnable: boolean
 }

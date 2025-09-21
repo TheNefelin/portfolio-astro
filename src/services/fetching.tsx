@@ -15,7 +15,7 @@ const GET_REQUEST_OPTIONS: RequestInit = {
 
 export async function apiFetchProjects(): Promise<ApiResult<Project[]>> {
   try {
-    const response = await fetch(`${API_URL}/projects`, GET_REQUEST_OPTIONS);
+    const response = await fetch(`${API_URL}/public-projects`, GET_REQUEST_OPTIONS);
     const apiResult: ApiResult<Project[]> = await response.json(); 
     if (!response.ok) throw new Error(`Error en la API: ${response.status} ${response.statusText}`)
 
@@ -28,7 +28,7 @@ export async function apiFetchProjects(): Promise<ApiResult<Project[]>> {
 
 export async function apiFetchLinks(): Promise<ApiResult<UrlGrp[]>> {
   try {
-    const response = await fetch(`${API_URL}/urls`, GET_REQUEST_OPTIONS);
+    const response = await fetch(`${API_URL}/public-urls`, GET_REQUEST_OPTIONS);
     const apiResult: ApiResult<UrlGrp[]> = await response.json();
     if (!response.ok) throw new Error(`Error en la API: ${response.status} ${response.statusText}`)
 
