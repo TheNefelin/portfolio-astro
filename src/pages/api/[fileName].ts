@@ -8,7 +8,7 @@ const API_URL = import.meta.env.SECRET_API_URL
 export const GET: APIRoute = async ({ params }) => {
   const fileName = params.fileName; // Obtener el nombre del archivo de los parámetros
 
-  console.log(fileName)
+  // console.log(fileName)
 
   // URL de la API externa
   const apiUrl = `${API_URL}/img?fileName=${fileName}`;
@@ -78,7 +78,7 @@ async function fetchUniqueImageUrls() {
 export async function getStaticPaths() {
   const uniqueImgUrls = await fetchUniqueImageUrls();
 
-  console.log(uniqueImgUrls)
+  // console.log(uniqueImgUrls)
 
   // Generar las rutas estáticas
   return uniqueImgUrls.map((imgUrl) => ({
