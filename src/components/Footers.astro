@@ -19,37 +19,3 @@ const apiResult: ApiResult<UrlGrp[]> = await apiFetchLinks()
     </nav>
   )}
 </footer>
-
-<footer class="relative z-10 footer bg-gray-700 text-neutral-content p-5">
-  <label class="m-auto flex">
-    © {new Date().getFullYear()}
-    <span>|</span>
-    <a href="https://www.francisco-dev.cl" target="_blank">francisco-dev.cl</a>
-    <span> | v1.0.2</span>
-  </label>
-</footer>
-
-<script>
-  import type { UrlGrp, Url } from "../types/Models";
-
-  fetch('/api/footer-links')
-  .then(r => r.ok ? r.json() : Promise.reject())
-  .then(data => {
-    console.log(data)
-
-    const liveData = data.data?.filter((urlGrp: UrlGrp) => urlGrp.isEnable) || [];
-    const footer = document.getElementById('dynamic-footer');
-    
-    if (liveData.length > 0) {
-      footer!.innerHTML = liveData.map((urlGrp: UrlGrp) => `
-        <nav>
-          <h6 class="footer-title">${urlGrp.name}</h6>
-          ${urlGrp.urls.map((url: Url) => 
-            `<a class="link link-hover" target="_blank" href="${url.link}">${url.name}</a>`
-          ).join('')}
-        </nav>
-      `).join('');
-    }
-  })
-  .catch(() => console.log('✅ Usando datos estáticos'));
-</script>
