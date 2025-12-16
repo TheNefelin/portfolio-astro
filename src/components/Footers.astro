@@ -30,11 +30,13 @@ const apiResult: ApiResult<UrlGrp[]> = await apiFetchLinks()
 </footer>
 
 <script>
-import type { UrlGrp, Url } from "../types/Models";
+  import type { UrlGrp, Url } from "../types/Models";
 
-fetch('/api/footer-links')
+  fetch('/api/footer-links')
   .then(r => r.ok ? r.json() : Promise.reject())
   .then(data => {
+    console.log(data)
+
     const liveData = data.data?.filter((urlGrp: UrlGrp) => urlGrp.isEnable) || [];
     const footer = document.getElementById('dynamic-footer');
     
