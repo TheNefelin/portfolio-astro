@@ -5,7 +5,9 @@ import type { ApiResult, Url, UrlGrp } from "../types/Models"
 const apiResult: ApiResult<UrlGrp[]> = await apiFetchLinks()
 ---
 
-<footer class="footer bg-gray-900 text-neutral-content p-10 grid grid-cols-2 md:grid-cols-4">
+<footer 
+  id="dynamic-footer" 
+  class="footer bg-gray-900 text-neutral-content p-10 grid grid-cols-2 md:grid-cols-4">
   {apiResult.data.map((urlGrp: UrlGrp) => 
     <nav>
       <h6 class="footer-title">{urlGrp.name}</h6>
@@ -24,3 +26,32 @@ const apiResult: ApiResult<UrlGrp[]> = await apiFetchLinks()
     <span> | v1.0.2</span>
   </label>
 </footer>
+
+<script>
+  // Esto se ejecuta en cada visita del usuario
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      // Import dinámico para evitar bundling del servicio en el cliente
+      const { apiFetchLinks } = await import('../services/fetching.js');
+      
+      const liveResult = await apiFetchLinks();
+      
+      if (liveResult.data) {
+        const footer = document.getElementById('dynamic-footer');
+        
+        // Actualizar solo si hay datos nuevos
+        footer!.innerHTML = liveResult.data.map(urlGrp => `
+          <nav>
+            <h6 class="footer-title">${urlGrp.name}</h6>
+            ${urlGrp.urls.map(url => 
+              `<a class="link link-hover" target="_blank" href="${url.link}">${url.name}</a>`
+            ).join('')}
+          </nav>
+        `).join('');
+      }
+    } catch (error) {
+      console.log('No se pudieron cargar los datos actualizados, manteniendo versión estática');
+      // Si falla, se mantiene el contenido estático del build
+    }
+  });
+</script>
