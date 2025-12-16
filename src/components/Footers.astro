@@ -8,7 +8,9 @@ const apiResult: ApiResult<UrlGrp[]> = await apiFetchLinks()
 <footer 
   id="dynamic-footer" 
   class="footer bg-gray-900 text-neutral-content p-10 grid grid-cols-2 md:grid-cols-4">
-  {apiResult.data.map((urlGrp: UrlGrp) => 
+  {apiResult.data
+    .filter(urlGrp => urlGrp.isEnable)
+    .map((urlGrp: UrlGrp) => 
     <nav>
       <h6 class="footer-title">{urlGrp.name}</h6>
       {urlGrp.urls.map((url: Url) => 
@@ -28,30 +30,24 @@ const apiResult: ApiResult<UrlGrp[]> = await apiFetchLinks()
 </footer>
 
 <script>
-  // Esto se ejecuta en cada visita del usuario
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      // Import dinámico para evitar bundling del servicio en el cliente
-      const { apiFetchLinks } = await import('../services/fetching.js');
-      
-      const liveResult = await apiFetchLinks();
-      
-      if (liveResult.data) {
-        const footer = document.getElementById('dynamic-footer');
-        
-        // Actualizar solo si hay datos nuevos
-        footer!.innerHTML = liveResult.data.map(urlGrp => `
-          <nav>
-            <h6 class="footer-title">${urlGrp.name}</h6>
-            ${urlGrp.urls.map(url => 
-              `<a class="link link-hover" target="_blank" href="${url.link}">${url.name}</a>`
-            ).join('')}
-          </nav>
-        `).join('');
-      }
-    } catch (error) {
-      console.log('No se pudieron cargar los datos actualizados, manteniendo versión estática');
-      // Si falla, se mantiene el contenido estático del build
+import type { UrlGrp, Url } from "../types/Models";
+
+fetch('/api/footer-links')
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(data => {
+    const liveData = data.data?.filter((urlGrp: UrlGrp) => urlGrp.isEnable) || [];
+    const footer = document.getElementById('dynamic-footer');
+    
+    if (liveData.length > 0) {
+      footer!.innerHTML = liveData.map((urlGrp: UrlGrp) => `
+        <nav>
+          <h6 class="footer-title">${urlGrp.name}</h6>
+          ${urlGrp.urls.map((url: Url) => 
+            `<a class="link link-hover" target="_blank" href="${url.link}">${url.name}</a>`
+          ).join('')}
+        </nav>
+      `).join('');
     }
-  });
+  })
+  .catch(() => console.log('✅ Usando datos estáticos'));
 </script>
