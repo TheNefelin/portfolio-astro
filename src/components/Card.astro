@@ -12,57 +12,59 @@ const apiResult: ApiResult<Project[]> = await apiFetchProjects()
   <div class="flex flex-wrap gap-4 justify-center m-auto max-w-screen-xl">
 
     {apiResult.data.map((project: Project) => 
-      <div class="card w-72 bg-base-100 shadow-xl">
-        <div class="card-body">
-          <h2 class="card-normal font-bold">{project.name}</h2>
-        </div>
+      project.isEnabled && (
+        <div class="card w-72 bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-normal font-bold">{project.name}</h2>
+          </div>
 
-        <figure class="px-4">
-          <img class="rounded-xl" src={`${API_IMG}${project.imgUrl}`} alt={project.name} />
-        </figure>
+          <figure class="px-4">
+            <img class="rounded-xl" src={`${API_IMG}${project.imgUrl}`} alt={project.name} />
+          </figure>
 
-        <div class="card-body m-auto">
-          <h2 class="card-title">
-            {project.languages.map((language: Language) => 
-              <div class="avatar m-auto">
-                <div class="h-10">
-                  <img src={`${API_IMG}${language.imgUrl}`} alt={language.name} />
+          <div class="card-body m-auto">
+            <h2 class="card-title">
+              {project.languages.map((language: Language) => 
+                <div class="avatar m-auto">
+                  <div class="h-10">
+                    <img src={`${API_IMG}${language.imgUrl}`} alt={language.name} />
+                  </div>
                 </div>
-              </div>
-            )}
-          </h2>
+              )}
+            </h2>
 
-          <h2 class="card-title m-auto">
-            {project.technologies.map((technology: Technology) => 
-              <div class="avatar m-auto">
-                <div class="h-10">
-                  <img src={`${API_IMG}${technology.imgUrl}`} alt={technology.name} />
+            <h2 class="card-title m-auto">
+              {project.technologies.map((technology: Technology) => 
+                <div class="avatar m-auto">
+                  <div class="h-10">
+                    <img src={`${API_IMG}${technology.imgUrl}`} alt={technology.name} />
+                  </div>
                 </div>
-              </div>
-            )}
-          </h2>
-        </div>
+              )}
+            </h2>
+          </div>
 
-        <div class="card-actions justify-center mb-2 text-gray-400">
-          {project.repoUrl && 
-            <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href={project.repoUrl} target="_blank">
-              <div class="w-4">
-                <img src={imgGitHub.src} alt="github image" />
-              </div>
-              <span>GitHub</span>
-            </a>          
-          }
+          <div class="card-actions justify-center mb-2 text-gray-400">
+            {project.repoUrl && 
+              <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href={project.repoUrl} target="_blank">
+                <div class="w-4">
+                  <img src={imgGitHub.src} alt="github image" />
+                </div>
+                <span>GitHub</span>
+              </a>          
+            }
 
-          {project.appUrl && 
-            <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href={project.appUrl} target="_blank">
-              <div class="w-4">
-                <img src={imgApp.src} alt="github image" />
-              </div>
-              <span>App</span>
-            </a>
-          }
+            {project.appUrl && 
+              <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href={project.appUrl} target="_blank">
+                <div class="w-4">
+                  <img src={imgApp.src} alt="github image" />
+                </div>
+                <span>App</span>
+              </a>
+            }
+          </div>
         </div>
-      </div>
+        )
     )}
 
   </div>

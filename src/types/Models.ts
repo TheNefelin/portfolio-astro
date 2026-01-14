@@ -11,6 +11,7 @@ export interface Project {
   imgUrl: string
   repoUrl: string
   appUrl: string
+  isEnabled: boolean
   languages: Language[]
   technologies: Technology[]
 }
