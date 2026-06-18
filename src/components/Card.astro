@@ -44,6 +44,10 @@ const data: Project[] = await getAllProjects();
           </div>
 
           <div class="card-actions justify-center mb-2 text-gray-400">
+            {!project.repoUrl && !project.appUrl &&
+              <p>without reference</p>
+            }
+            
             {project.repoUrl && 
               <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href={project.repoUrl} target="_blank">
                 <div class="w-4">
