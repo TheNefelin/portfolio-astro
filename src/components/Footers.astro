@@ -1,16 +1,14 @@
 ---
-import { apiFetchLinks } from "../services/fetching"
-import type { ApiResult, Url, UrlGrp } from "../types/Models"
+import { getAllUrls } from "../services/fetching"
+import type { Url, UrlGrp } from "../types/Models"
 
-const apiResult: ApiResult<UrlGrp[]> = await apiFetchLinks()
+const data: UrlGrp[] = await getAllUrls();
 ---
 
 <footer 
   id="dynamic-footer" 
   class="footer bg-gray-900 text-neutral-content p-10 grid grid-cols-2 md:grid-cols-4">
-  {apiResult.data
-    .filter(urlGrp => urlGrp.isEnable)
-    .map((urlGrp: UrlGrp) => 
+  {data.filter(urlGrp => urlGrp.isEnabled).map((urlGrp: UrlGrp) => 
     <nav>
       <h6 class="footer-title">{urlGrp.name}</h6>
       {urlGrp.urls.map((url: Url) => 

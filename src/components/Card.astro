@@ -1,25 +1,24 @@
 ---
-import type { ApiResult, Language, Project, Technology } from "../types/Models"
+import type { Language, Project, Technology } from "../types/Models"
 import imgApp from '../assets/img/app.png';
 import imgGitHub from '../assets/img/github.png';
-import { apiFetchProjects } from "../services/fetching";
+import { getAllProjects } from "../services/fetching";
 
-const API_IMG = "/api/"
-const apiResult: ApiResult<Project[]> = await apiFetchProjects()
+const data: Project[] = await getAllProjects();
 ---
 
 <section class="p-4">
-  <div class="flex flex-wrap gap-4 justify-center m-auto max-w-screen-xl">
+  <div class="flex flex-wrap gap-8 justify-center">
 
-    {apiResult.data.map((project: Project) => 
+    {data.map((project: Project) => 
       project.isEnabled && (
-        <div class="card w-72 bg-base-100 shadow-xl">
+        <div class="card w-72 bg-base-100 shadow-xl hover:scale-105 transition-transform duration-300">
           <div class="card-body">
-            <h2 class="card-normal font-bold">{project.name}</h2>
+            <h2 class="card-normal font-bold">{ project.name }</h2>
           </div>
 
           <figure class="px-4">
-            <img class="rounded-xl" src={`${API_IMG}${project.imgUrl}`} alt={project.name} />
+            <img class="rounded-xl shadow-2xl aspect-video" src={ project.imgUrl } alt={ project.name } />
           </figure>
 
           <div class="card-body m-auto">
@@ -27,7 +26,7 @@ const apiResult: ApiResult<Project[]> = await apiFetchProjects()
               {project.languages.map((language: Language) => 
                 <div class="avatar m-auto">
                   <div class="h-10">
-                    <img src={`${API_IMG}${language.imgUrl}`} alt={language.name} />
+                    <img src={ language.imgUrl } alt={ language.name } />
                   </div>
                 </div>
               )}
@@ -37,7 +36,7 @@ const apiResult: ApiResult<Project[]> = await apiFetchProjects()
               {project.technologies.map((technology: Technology) => 
                 <div class="avatar m-auto">
                   <div class="h-10">
-                    <img src={`${API_IMG}${technology.imgUrl}`} alt={technology.name} />
+                    <img src={ technology.imgUrl } alt={ technology.name } />
                   </div>
                 </div>
               )}
