@@ -1,0 +1,25 @@
+---
+import { getAllUrls } from "@/api/fetching"
+import type { Url, UrlGrp } from "@/types/Models"
+
+const { data, error } = await getAllUrls();
+---
+
+{error && (
+  <div class="alert alert-error shadow-lg mx-4 my-2">
+    <span>{error}</span>
+  </div>
+)}
+
+<footer 
+  id="dynamic-footer" 
+  class="footer bg-gray-900 text-neutral-content p-10 grid grid-cols-2 md:grid-cols-4">
+  {Array.isArray(data) && data.filter(urlGrp => urlGrp.isEnabled).map((urlGrp: UrlGrp) => 
+    <nav>
+      <h6 class="footer-title">{urlGrp.name}</h6>
+      {urlGrp.urls.map((url: Url) => 
+        <a class="link link-hover" target="_blank" href={url.link}>{url.name}</a>
+      )}
+    </nav>
+  )}
+</footer>

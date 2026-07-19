@@ -1,0 +1,32 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import NavBar from '@/components/NavBar.astro';
+import Hero from '@/components/Hero.astro';
+import Title from '@/components/Title.astro';
+import Console from '@/components/Console.astro';
+import Code from '@/components/Code.astro';
+import Card from '@/components/Card.astro';
+import Certification from '@/components/Certification.astro';
+import Socials from '@/components/Socials.astro';
+import Footers from '@/components/Footers.astro';
+---
+
+<Layout>
+	<NavBar/>
+
+	<main class="pt-20">
+		<Hero/>
+		<Title id="id_me" title="aboutMe"/>		
+		<Console/>
+		<Title id="id_Experience" title="someExperience"/>
+		<Code/>
+		<Title id="id_projects" title="someProjects"/>
+		<Card/>
+		<Title id="id_certifications" title="someCertifications"/>
+		<Certification/>
+		<Title id="id_socials" title="someSocials"/>
+		<Socials/>
+	</main>
+
+	<Footers/>
+</Layout>

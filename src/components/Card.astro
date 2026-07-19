@@ -1,0 +1,80 @@
+---
+import type { Language, Project, Technology } from "@/types/Models"
+import imgApp from '@/assets/img/app.png';
+import imgGitHub from '@/assets/img/github.png';
+import { getAllProjects } from "@/api/fetching";
+
+const { data, error } = await getAllProjects();
+---
+
+{error && (
+  <div class="alert alert-error shadow-lg mx-4 my-2">
+    <span>{error}</span>
+  </div>
+)}
+
+<section class="p-4">
+  <div class="flex flex-wrap gap-8 justify-center">
+
+    {Array.isArray(data) && data.map((project: Project) => 
+      project.isEnabled && (
+        <div class="card w-72 bg-base-100 shadow-xl hover:scale-105 transition-transform duration-300">
+          <div class="card-body">
+            <h2 class="card-normal font-bold">{ project.name }</h2>
+          </div>
+
+          <figure class="px-4">
+            <img class="rounded-xl shadow-2xl aspect-video" src={ project.imgUrl } alt={ project.name } />
+          </figure>
+
+          <div class="card-body m-auto">
+            <h2 class="card-title">
+              {project.languages.map((language: Language) => 
+                <div class="avatar m-auto">
+                  <div class="h-10">
+                    <img src={ language.imgUrl } alt={ language.name } />
+                  </div>
+                </div>
+              )}
+            </h2>
+
+            <h2 class="card-title m-auto">
+              {project.technologies.map((technology: Technology) => 
+                <div class="avatar m-auto">
+                  <div class="h-10">
+                    <img src={ technology.imgUrl } alt={ technology.name } />
+                  </div>
+                </div>
+              )}
+            </h2>
+          </div>
+
+          <div class="card-actions justify-center mb-2 text-gray-400">
+            {!project.repoUrl && !project.appUrl &&
+              <p>without reference</p>
+            }
+            
+            {project.repoUrl && 
+              <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href={project.repoUrl} target="_blank">
+                <div class="w-4">
+                  <img src={imgGitHub.src} alt="github image" />
+                </div>
+                <span>GitHub</span>
+              </a>          
+            }
+
+            {project.appUrl && 
+              <a class="avatar flex items-center gap-2 hover:text-red-400 transition timeline-300" href={project.appUrl} target="_blank">
+                <div class="w-4">
+                  <img src={imgApp.src} alt="github image" />
+                </div>
+                <span>App</span>
+              </a>
+            }
+          </div>
+        </div>
+        )
+    )}
+
+  </div>
+</section>
