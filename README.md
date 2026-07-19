@@ -7,14 +7,16 @@ pnpm self-update
 ```
 --- Server API
 ```sh
-pnpm astro add node
+pnpm add @astrojs/vercel
 ```
 - astro.config.mjs
 ```mjs
+import vercel from "@astrojs/vercel";
+
+export default defineConfig({
   output: 'server',
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: vercel(),
+});
 ```
 - Add @ for routes astro.config.mjs
 ```mjs
