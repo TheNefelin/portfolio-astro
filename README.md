@@ -3,7 +3,11 @@
 ### Dependencies
 > [Tailwindcss + DaisyUI](https://daisyui.com/docs/install/astro)
 ```sh
+npm install -g pnpm
+pnpm add -g pnpm 
 pnpm self-update 
+
+pnpm astro telemetry disable
 ```
 --- Server API
 ```sh
