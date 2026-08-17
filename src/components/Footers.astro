@@ -1,8 +1,11 @@
 ---
-import { getAllUrls } from "@/api/fetching"
 import type { Url, UrlGrp } from "@/types/Models"
 
-const { data, error } = await getAllUrls();
+interface Props {
+  urlGroups: UrlGrp[] | null;
+  error: string | null;
+}
+const { urlGroups, error } = Astro.props;
 ---
 
 {error && (
@@ -14,7 +17,7 @@ const { data, error } = await getAllUrls();
 <footer 
   id="dynamic-footer" 
   class="footer bg-gray-900 text-neutral-content p-10 grid grid-cols-2 md:grid-cols-4">
-  {Array.isArray(data) && data.filter(urlGrp => urlGrp.isEnabled).map((urlGrp: UrlGrp) => 
+  {Array.isArray(urlGroups) && urlGroups.filter(urlGrp => urlGrp.isEnabled).map((urlGrp: UrlGrp) => 
     <nav>
       <h6 class="footer-title">{urlGrp.name}</h6>
       {urlGrp.urls.map((url: Url) => 

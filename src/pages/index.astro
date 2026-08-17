@@ -9,6 +9,13 @@ import Card from '@/components/Card.astro';
 import Certification from '@/components/Certification.astro';
 import Socials from '@/components/Socials.astro';
 import Footers from '@/components/Footers.astro';
+import { getAllProjects, getAllUrls } from '@/api/fetching';
+
+// Fetchs EN PARALELO: el peor caso es el fetch más lento, no la suma
+const [projects, urlGroups] = await Promise.all([
+  getAllProjects(),
+  getAllUrls(),
+]);
 ---
 
 <Layout>
@@ -21,12 +28,12 @@ import Footers from '@/components/Footers.astro';
 		<Title id="id_Experience" title="someExperience"/>
 		<Code/>
 		<Title id="id_projects" title="someProjects"/>
-		<Card/>
+		<Card projects={projects.data} error={projects.error}/>
 		<Title id="id_certifications" title="someCertifications"/>
 		<Certification/>
 		<Title id="id_socials" title="someSocials"/>
 		<Socials/>
 	</main>
 
-	<Footers/>
+	<Footers urlGroups={urlGroups.data} error={urlGroups.error}/>
 </Layout>
