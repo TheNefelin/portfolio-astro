@@ -1,0 +1,26 @@
+{
+    "schemaVersion":  1,
+    "baselineVersion":  "0.1.1",
+    "mode":  "local",
+    "installedAt":  "2026-10-27T11:40:00.4278385-03:00",
+    "skills":  [
+                   "astro"
+               ],
+    "targets":  [
+                    "none"
+                ],
+    "targetFileCreated":  false,
+    "targetPermissionsAdded":  false,
+    "targetFiles":  [
+
+                    ],
+    "files":  {
+                  ".baseline/AGENTS.md":  "601ED56CC2664956DEBB5EC2EE7EA1BE2141AA365B2805AEBFDE8E07CC9D16A2",
+                  ".baseline/session.md":  "4D3C2F6F652C3CB880A5204CC5434CB32B40E873AEF9A11C18EFEF094940F484",
+                  ".baseline/skills/astro/references/auth-cliente.md":  "7C10FA801534E6D4E2B86B520197F6DE480177E218B96308888F4711DF3BC496",
+                  ".baseline/skills/astro/references/bff-proxy.md":  "255738F7EBE60D513382873C648EC43F204E8DB0E24B61832419B129FC5B7A58",
+                  ".baseline/skills/astro/references/toast.md":  "A75B77801C0E5537AD4F552B647C1B5D715952F6CAB09D9128D72B565960B725",
+                  ".baseline/skills/astro/SKILL.md":  "E3116F3A463F3A49F62FB490CC876DA12ED26AFF4FF17DBA3EF7EBA393E71944",
+                  ".baseline/VERSION":  "80447316529FC62014FBAA047FB67C51AC30E32830CDA370405349D8D66D196C"
+              }
+}
